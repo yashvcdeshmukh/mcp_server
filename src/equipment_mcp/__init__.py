@@ -1,8 +1,7 @@
 """IT equipment request MCP server and local ReAct agent."""
-
-__version__ = "0.1.0"
+from equipment_mcp.server import mcp
 
 
 def main() -> None:
-    """Reserved for the MCP server entry point."""
-    raise SystemExit("The MCP server is not implemented yet.")
+    """Run the MCP server."""
+    mcp.run()
