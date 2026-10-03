@@ -7,10 +7,12 @@ requires-python = ">=3.12"
 dependencies = [
     "mcp>=2.2.0",
     "ollama>=0.6.3",
+    "pydantic>=2.0",
 ]
 
 [project.scripts]
 equipment-mcp = "equipment_mcp:main"
+equipment-agent = "equipment_mcp.agent.loop:main"
 
 [build-system]
 requires = ["uv_build>=0.12.9,<0.13.0"]
@@ -18,10 +20,33 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "mypy>=2.4.0",
     "pytest>=9.1.1",
     "pytest-asyncio>=1.4.0",
+    "ruff>=0.16.10",
 ]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.mypy]
+python_version = "3.12"
+files = ["src", "tests", "scripts"]
+mypy_path = "src"
+explicit_package_bases = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["mcp.*", "ollama.*"]
+ignore_missing_imports = true

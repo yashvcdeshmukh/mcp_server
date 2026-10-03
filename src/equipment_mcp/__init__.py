@@ -1,8 +1,13 @@
 """IT equipment request MCP server and local ReAct agent."""
 
-__version__ = "0.1.0"
-
 
 def main() -> None:
-    """Reserved for the MCP server entry point."""
-    raise SystemExit("The MCP server is not implemented yet.")
+    from equipment_mcp.config import HOST, PATH, PORT
+    from equipment_mcp.server import mcp
+
+    mcp.run(
+        transport="streamable-http",
+        host=HOST,
+        port=PORT,
+        streamable_http_path=PATH,
+    )
