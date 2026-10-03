@@ -1,7 +1,13 @@
 """IT equipment request MCP server and local ReAct agent."""
-from equipment_mcp.server import mcp
 
 
 def main() -> None:
-    """Run the MCP server."""
-    mcp.run()
+    from equipment_mcp.config import HOST, PATH, PORT
+    from equipment_mcp.server import mcp
+
+    mcp.run(
+        transport="streamable-http",
+        host=HOST,
+        port=PORT,
+        streamable_http_path=PATH,
+    )

@@ -14,4 +14,7 @@ jobs:
           version: "0.12.9"
           python-version: "3.12"
       - run: uv sync --frozen --all-groups
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
       - run: uv run pytest

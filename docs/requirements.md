@@ -58,6 +58,8 @@ Test these in order. The first match is the result.
 
 ## Decision
 
+The agent approves when `check_request_eligibility` returns `eligible` and no earlier row fires: the reason is present, it names this one item, and it does not contradict what the tools returned. It denies when that tool returns `ineligible` and the reason only expresses a preference, citing the anniversary the tool returned (or the maximum when there is no unit). It escalates every other case by calling `flag_for_human_review`. It does not guess.
+
 The agent walks these in order and stops at the first match. If two rows seem to apply, or the agent cannot tell which one applies, it escalates.
 
 | Order | Situation | Decision | Why |

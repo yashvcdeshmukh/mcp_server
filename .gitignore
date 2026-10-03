@@ -10,3 +10,4 @@ build/
 .env
 reviews/
 .DS_Store
+docs/deliverable/
